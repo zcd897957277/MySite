@@ -1,0 +1,28 @@
+.body {
+  position: relative;
+}
+.middleAll {
+  margin: 0% 22% 5% 12%;
+}
+.leftAll {
+  position: absolute;
+  top: 2%;
+  left: 1%;
+}
+.rightAll {
+  position: absolute;
+  top: 4%;
+  right: 1%;
+  width: 19%;
+}
+.tag {
+  padding: 5px;
+  padding-bottom: 0;
+  margin-top: 20px;
+  border: 1px solid slategrey;
+  border-radius: 5px;
+}
+.tag > button {
+  margin-right: 5px;
+  margin-bottom: 5px;
+}

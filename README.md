@@ -1,4 +1,1 @@
-技术栈：
-node + express
-
-bootstrap + Less
+技术栈：node + express + mongodb  bootstrap + Less

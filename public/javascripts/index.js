@@ -1,8 +1,8 @@
- // 获取元素
+// 获取元素
 function fGetElement() {
-    var c = new Array();
-    for (var b = 0; b < arguments.length; b++) {
-        var a = arguments[b];
+    let c = new Array();
+    for (let b = 0; b < arguments.length; b++) {
+        let a = arguments[b];
         // 判断是否是字符串类型
         if (typeof a == "string") {
             // 获取a
@@ -17,7 +17,7 @@ function fGetElement() {
 }
 
 //布局控制
-var PIndexControl = {
+const PIndexControl = {
     aDomAry:[],middleNavigThumbnail:null
     , pInitLayout: function () {//初始化布局
         // 获取元素
@@ -30,13 +30,14 @@ var PIndexControl = {
         this.pagination();
     },
     pagination:function(){//主体中的缩略图的分页
-        var middleNavigThumbnail=$(this.middleNavigThumbnail);
-        var lis=$(middleNavigThumbnail).find('ul.pagination>li');
+        let middleNavigThumbnail=$(this.middleNavigThumbnail);
+        let lis=$(middleNavigThumbnail).find('ul.pagination>li');
         $(lis).each(function(i,elem){
             if(!$(elem).hasClass('disabled')){
                 $(elem).on('click',function(){
+                    //选中样式的转换
                     $(this).siblings().removeClass('active');
-                    var sibs=$(this).siblings();
+                    let sibs=$(this).siblings();
                     $(sibs).each(function(j,elemj){
                         if(!$(elemj).hasClass('disabled')){
                             if($(elemj).find('span').length<1){
@@ -58,7 +59,31 @@ var PIndexControl = {
                     if($(this).children('span').children('span').attr('aria-hidden')){
                         $(this).children('span').append("<span class='sr-only'>>></span>");
                     }else{
+                        //异步查取图片信息
+                        loadXMLDoc(i);
                         $(this).children('span').append("<span class='sr-only'>"+i+"</span>");
+                    }
+                    //分页功能实现
+                    function loadXMLDoc(num) {
+                        let xmlhttp;
+                        if (window.XMLHttpRequest)
+                        {
+                            //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+                            xmlhttp=new XMLHttpRequest();
+                        }
+                        else
+                        {
+                            // IE6, IE5 浏览器执行代码
+                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        xmlhttp.onreadystatechange=function() {
+                            if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                            {
+                                console.log("成功分页！");
+                            }
+                        };
+                        xmlhttp.open("GET","/?pict_num="+num,true);
+                        xmlhttp.send();
                     }
                 })
             }
@@ -67,5 +92,3 @@ var PIndexControl = {
 };
 // 初始化布局
 PIndexControl.pInitLayout();
-
-

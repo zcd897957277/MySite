@@ -79,7 +79,12 @@ const PIndexControl = {
                         xmlhttp.onreadystatechange=function() {
                             if (xmlhttp.readyState==4 && xmlhttp.status==200)
                             {
-                                console.log("成功分页！");
+                                if($('.body_pict').html()){
+                                    $('.body_pict').empty();
+                                    // let obj = JSON.parse((xmlhttp.responseText));
+                                    // let str=obj["thumbnails"];
+                                    // $('.body_pict').append(str);
+                                }
                             }
                         };
                         xmlhttp.open("GET","/?pict_num="+num,true);

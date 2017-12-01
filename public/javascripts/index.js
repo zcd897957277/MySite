@@ -66,13 +66,11 @@ const PIndexControl = {
                     //分页功能实现
                     function loadXMLDoc(num) {
                         let xmlhttp;
-                        if (window.XMLHttpRequest)
-                        {
+                        if (window.XMLHttpRequest) {
                             //  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
                             xmlhttp=new XMLHttpRequest();
                         }
-                        else
-                        {
+                        else {
                             // IE6, IE5 浏览器执行代码
                             xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
                         }
@@ -81,9 +79,13 @@ const PIndexControl = {
                             {
                                 if($('.body_pict').html()){
                                     $('.body_pict').empty();
-                                    // let obj = JSON.parse((xmlhttp.responseText));
-                                    // let str=obj["thumbnails"];
-                                    // $('.body_pict').append(str);
+                                    let obj = JSON.parse((xmlhttp.responseText));
+                                    let str=obj["thumbnails"];
+                                    $('.body_pict').append(str);
+                                }else{
+                                    let obj = JSON.parse((xmlhttp.responseText));
+                                    let str=obj["thumbnails"];
+                                    $('.body_pict').append(str);
                                 }
                             }
                         };
